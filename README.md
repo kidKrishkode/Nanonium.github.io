@@ -4,7 +4,7 @@
 ## Introduction
 Welcome to **Nanonium**, an innovative **SQL Bot** that converts user queries into SQL statements. Whether you're a non-technical user or a student learning SQL, Nanonium makes generating SQL queries as simple as chatting! You just need to ask a question, and Nanonium will provide you with the corresponding SQL query. 
 
-![Nanonium](https://kidKrishkode.github.io/Nanonium.github.io/public/favivon.ico)
+![Nanonium](https://kidKrishkode.github.io/Nanonium.github.io/public/favicon.ico)
 
 ## Aim 🎯
 Our goal is to empower users by enabling them to easily convert natural language questions into SQL queries. With **Nanonium**, you can:
