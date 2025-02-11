@@ -1,0 +1,66 @@
+<section class="userInfo workspace">
+    <header class="bg-dark">
+        <img src="../images/avater.png" alt="userDp"/>
+        <!-- <h1>{user.name}</h1> -->
+        <button class="btn backTochat"><i class="fa fa-arrow-left"></i> Profile</button>
+    </header>
+    <div class="profile-log">
+        <div class="profile-log-content">
+            <div class="left"><i class="fa fa-user"></i></div>
+            <div class="right">
+                <small class="text-muted head">Name</small>
+                <p>Krishnendu Mitra</p>
+                <small class="text-muted">This name is for this session only and will not be shared publicly. It's used to personalize your experience and ensure account security.</small>
+            </div>
+        </div>
+        <div class="profile-log-content">
+            <div class="left"><i class="fa fa-rupee"></i></div>
+            <div class="right">
+                <small class="text-muted head">Account</small>
+                <p>Free (No memory)</p>
+                <small class="text-muted">We collect your account information solely for security purposes. This data is deleted after the session ends and is not linked to your public profile.</small>
+            </div>
+        </div>
+        <div class="profile-log-content">
+            <div class="left"><i class="fa fa-wifi"></i></div>
+            <div class="right">
+                <small class="text-muted head">Network IP</small>
+                <p><%= ip %></p>
+                <small class="text-muted">Your network information helps us optimize our services and prevent abuse. This data is anonymized and discarded after the session.</small>
+            </div>
+        </div>
+        <div class="profile-log-content">
+            <div class="left"><i class="fa fa-chrome"></i></div>
+            <div class="right">
+                <small class="text-muted head">Browser</small>
+                <p><%= browser[0] %> v-<%= browser[1] %></p>
+                <small class="text-muted">We collect browser details to ensure compatibility and security. This information is not stored or shared beyond this session.</small>
+            </div>
+        </div>
+        <div class="profile-log-content">
+            <div class="left"><i class="fa fa-desktop"></i></div>
+            <div class="right">
+                <small class="text-muted head">Device</small>
+                <p><%= deviceVison %></p>
+                <small class="text-muted">Your device information is used to improve our services and prevent unauthorized access. This data is deleted after the session ends.</small>
+            </div>
+        </div>
+        <div class="profile-log-content">
+            <div class="left"><i class="fa fa-map-marker"></i></div>
+            <div class="right">
+                <small class="text-muted head">Location</small>
+                <p id="loc">Permission require!</p>
+                <small class="text-muted">We collect location data to provide a secure experience and comply with regulatory requirements. This information is not shared publicly and is discarded after the session.</small>
+            </div>
+        </div>
+    </div>
+    <div class="text-muted footer">
+        <span class="flx"><img src="../public/favicon.ico" alt="chs"/><o>© <%= (new Date().getFullYear()) %> Nanonium</o></span>
+        <span onclick="system.openTerms();">Terms</span>
+        <span onclick="system.openPrivacy();">Privacy</span>
+        <span onclick="system.openLicense();">Security</span>
+        <span onclick="route('/docs')">Docs</span>
+        <span><a href="mailto:krishnendumitra24@gmail.com?&subject=Nanonium Query&body=My name is: <|Write your name|>,\nMy query is: <|Write your query|>.">Contact</a></span>
+        <span onclick="route('/docs')">Social Media</span>
+    </div>
+</section>

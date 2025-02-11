@@ -1,0 +1,19 @@
+{
+  "name": "Nanonium.github.io",
+  "version": "1.0.0",
+  "description": "Nanonium is SQL Bot convert user question to desire sql query using JPEN stack and Hex framework with Recursive agile software model",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Krishnendu Mitra",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "jsonfile": "^6.1.0"
+  }
+}

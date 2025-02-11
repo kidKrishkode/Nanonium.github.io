@@ -1,0 +1,28 @@
+{
+    "name": "Nanonium",
+    "short_name": "Nanonium",
+    "description": "Nanonium is SQL Bot convert user question to desire sql query using JPEN stack and Hex framework with Recursive agile software model.",
+    "icons": [
+        {
+            "src": "favicon.png",
+            "sizes": "1500x1500 16x16",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "logo1500.png",
+            "type": "image/png",
+            "sizes": "1500x1500"
+        }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#22577aff",
+    "background_color": "#ffffff",
+    "contact": "krishnendumitra24@gmail.com",
+    "developer": "Krishnendu Mitra",
+    "error_log": [
+        {"code": 0, "desc": "Invalid user input: empty field detected"},
+        {"code": 1, "desc": "Unsupported media format: please try another file type"},
+        {"code": 2, "desc": "An error occurred. There was an error generating your response query. If this issue persists please contact us through our feedback line krishnedumitra24@gmail.com"}
+    ]
+}
