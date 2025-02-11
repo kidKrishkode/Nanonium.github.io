@@ -47,7 +47,7 @@ Many users, especially those from non-technical backgrounds, often need SQL quer
 For inquiries, collaborations, or feedback, please reach out to me at:
 - **Email**: krishnendu.mitra@example.com
 - **LinkedIn**: [Krishnendu Mitra](https://www.linkedin.com/in/krishnendu-mitra/)
-- **Instagram**: [@kidKrishkode001](https://instagram.com/kidKrishkode001)
+- **Instagram**: [@kidKrishkode01](https://www.instagram.com/kidkrishkode01)
 
 ---
 
