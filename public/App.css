@@ -1,10 +1,34 @@
-:root{
-    --bg-color: #f6f6f6;
-    --bot-m-color: #ddd9d9dc;
-    --user-m-color: #0c8df0ca;
-    --send-color: #90a4ae;
-    --scrollbarBG: #fff;
-    --thumbBG: #90a4ae;
+@media (prefers-color-scheme: light) {
+    :root{
+        --bg-color: #f6f6f6;
+        --bot-m-color: #ddd9d9dc;
+        --user-m-color: #4a2c83;
+        --send-color: #90a4ae;
+        --scrollbarBG: #fff;
+        --thumbBG: #90a4ae;
+        --eco-lighting: #00ff09;
+        --atom-blue: #0c8ff0;
+        --revers-white: #000;
+        --glass-color: #ececec79;
+        --code-color: #ebf0f4;
+        --code-li-color: #fff;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    :root{
+        --bg-color: #0d1117;
+        --bot-m-color: #ddd9d9dc;
+        --user-m-color: #4a2c83ca;
+        --send-color: #90a4ae;
+        --scrollbarBG: #fff;
+        --thumbBG: #90a4ae;
+        --eco-lighting: #00ff09;
+        --atom-blue: #0c8ff0;
+        --revers-white: #fff;
+        --glass-color: #161b2279;
+        --code-color: #161b20;
+        --code-li-color: #1E1E1E;
+    }
 }
 body{
     margin: 0%;
@@ -145,6 +169,7 @@ body{
     margin: 10px auto 0px auto;
     padding: 8px 6px;
     font-size: 16px;
+    background: var(--glass-color);
     border: 1px solid var(--send-color);
     border-radius: 10px;
     transition: 1s ease-in-out;
@@ -286,7 +311,7 @@ footer, footer small{
     border-radius: 50%;
     width: 200px;
     height: 200px;
-    color: #0c8ff0;
+    color: #4a2c83ca;
     position: absolute;
 	top: 30%;
 	left: 40%;
@@ -305,7 +330,7 @@ footer, footer small{
     animation: 1s spin linear infinite;
 }
 .loader:after{
-    color: #0c8ff9;
+    color: #4a2c83;
     transform: rotateY(70deg);
     animation-delay: .4s;
 }

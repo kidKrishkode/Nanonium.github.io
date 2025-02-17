@@ -205,7 +205,7 @@ System.prototype.themeToggle = function(id){
     }
 }
 System.prototype.setTheme = function(){
-    theme = window.matchMedia('(prefers-color-scheme: dark)')==true?1:0;
+    theme = window.matchMedia('(prefers-color-scheme: dark)').matches==true?1:0;
     for(let i=0; i<themeSet[theme].length; i++){
         document.documentElement.style.setProperty(themeSet[theme][i][0], themeSet[theme][i][1]);
     }
