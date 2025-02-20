@@ -74,7 +74,7 @@ Loader.prototype.creat = function(){
     if(loader.loaded!=false){
         const loaderEle = document.createElement('section');
         loaderEle.classList.add("loading");
-        loaderEle.innerHTML = `<div class="loader"></div><div class="loader reversloder"></div>`;
+        loaderEle.innerHTML = `<div class="loader"></div><div class="loader reversloder"></div><div class="loaderhead">Nanonium</div>`;
         document.body.appendChild(loaderEle);
         document.body.style.overflowY = "hidden";
     }
@@ -104,10 +104,11 @@ TAB.prototype.closeAll = function(){
     document.body.removeChild(document.querySelector('.tabPage'));
     TAB.opened = false;
 }
-TAB.prototype.innerContext = function(innerContext){
+TAB.prototype.innerContext = function(title, innerContext){
     try{
-        document.querySelector('.tabPage').innerHTML = config.varchar.error_templet;
-        document.querySelector('.error-message').innerHTML = innerContext;
+        document.querySelector('.tabPage').innerHTML = config.varchar.info_templet.replace("<|title|>", title);
+        document.querySelector('.modal-body').innerHTML = innerContext;
+
     }catch(e){
         console.error(e);
     }
@@ -138,6 +139,27 @@ System.prototype.setUp = function(){
         console.log("Error to set up initials!\n",e);
     }
 }
+System.prototype.navbar_toggle = function(){
+    if(nav==0){
+        if(document.querySelector('#v-pills-tab')==null){
+            fetch('/sideNav').then(response => response.text()
+            ).then(data => 
+                document.body.innerHTML += data
+            ).catch(error => console.error('Error: ',error));
+        }
+        setTimeout(()=>{
+            document.querySelector('.blbg').style.display = "block";
+            document.getElementById('v-pills-tab').style.display = "block";
+            document.body.style.overflowY = "hidden";
+            nav++;
+        },1000);
+    }else{
+        document.getElementById('v-pills-tab').style.display = "none";
+        document.body.style.overflowY = "auto";
+        document.querySelector('.blbg').style.display = "none";
+        nav--;
+    }
+}
 System.prototype.deviceVision = function(){
     const userAgent = navigator.userAgent;
     const isComputer = /Windows|Macintosh|Linux/i.test(userAgent) && !/Mobile/i.test(userAgent);
@@ -163,6 +185,27 @@ System.prototype.getUserLocation = function(){
             reject(new Error("Geolocation is not supported by this browser. Try another one!"));
         }
     });
+}
+System.prototype.impexpTab = function(){
+    let tab = new TAB();
+    tab.open();
+    tab.innerContext("Import/Export chat", config.varchar.chat_impexp);
+    const input = document.getElementById("file-input");
+    input.addEventListener("change", async (e) => {
+        const file = e.target.files[0]; 
+        document.getElementById("file-name").value = `${e.target.files[0].name} (${(e.target.files[0].size/1000).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}kb)`;
+        const text = await file.text();
+        try{
+          JSON.parse(text);
+        }catch(e){
+            console.info("oops");
+        }
+    });
+}
+System.prototype.swtcmodl = function(){
+    let tab = new TAB();
+    tab.open();
+    tab.innerContext("Change model type", config.varchar.model_switch);
 }
 function route(link){
     window.location = link;
