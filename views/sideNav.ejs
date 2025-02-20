@@ -1,0 +1,87 @@
+<style>
+#v-pills-tab{
+    display: none;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    z-index: 99;
+    width: 30%;
+    height: 100%;
+    background: var(--glass-color);
+    backdrop-filter: blur(5px);
+    color: gray;
+    padding: 20px 10px;
+    box-shadow: 0px 1px 2px 1px grey;
+    user-select: none;
+    transition: 1s ease-in-out;
+}
+.nav-link i{
+    width: 10%;
+}
+.nav-link:hover{
+    background: #cbcbcb;
+    cursor: pointer;
+}
+.nav-pills .nav-link.active{
+    background-color: var(--user-m-color);
+}
+.form-check .form-check-label span{
+    font-size: 10px;
+    padding: 4px;
+    border: 2px solid #ec2c75;
+    border-radius: 20px;
+    margin-left: 4px;
+    background: linear-gradient(50deg, #2323ff 30%, #ec2c75 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+}
+label.label input[type="file"]{
+  position: absolute;
+  top: -1000px;
+}
+.label{
+    cursor: pointer;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    background: var(--glass-color);
+    backdrop-filter: blur(5px);
+    display: inline-block;
+    width: 100%;
+    height: 100px;
+    margin: 4px auto;
+    padding: 35px 0px;
+    text-align: center;
+    color: grey
+}
+.label:hover{
+    background-color: gainsboro;
+}
+.label:active{
+    background: #9fa1a0;
+}
+#file-name{
+    background: transparent;
+    border: none;
+    color: grey;
+}
+@media only screen and (max-width: 900px), only screen and (max-width: 1028px) {
+    #v-pills-tab{
+        width: 70%;
+    }
+    .nav-link i{
+        width: 20%;
+    }
+}
+</style>
+<div class="blbg" onclick="system.navbar_toggle();">
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <div class="nav-link active" id="v-pills-chat_impexp-tab" role="tab" aria-controls="v-pills-chat_impexp" aria-selected="true" onclick="system.impexpTab();"><i class="fa fa-cloud-upload"></i><span>Chat Import/Export</span></div>
+        <div class="nav-link" id="v-pills-switch_model-tab" role="tab" aria-controls="v-pills-switch_model" aria-selected="false" onclick="system.swtcmodl();"><i class="fa fa-code-fork"></i><span>Switch Model</span></div>
+        <div class="nav-link" id="v-pills-toggle_theme-tab" role="tab" aria-controls="v-pills-toggle_theme" aria-selected="false"><i class="fa fa-adjust"></i><span>Appearence</span></div>
+        <div class="nav-link" id="v-pills-delete_chat-tab" role="tab" aria-controls="v-pills-delete_chat" aria-selected="false"><i class="fa fa-trash-o"></i><span>Delete Chat Data</span></div>
+        <div class="nav-link" id="v-pills-git_repo-tab" role="tab" aria-controls="v-pills-git_repo" aria-selected="false"><i class="fa fa-github"></i><span>Github Repository</span></div>
+        <div class="nav-link" id="v-pills-docs-tab" role="tab" aria-controls="v-pills-docs" aria-selected="false"><i class="fa fa-puzzle-piece"></i><span>Documents</span></div>
+        <div class="nav-link" id="v-pills-feedback-tab" role="tab" aria-controls="v-pills-feedback" aria-selected="false"><i class="fa fa-commenting-o"></i><span>Send FeedBack</span></div>
+    </div>
+</div>
