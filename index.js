@@ -162,7 +162,11 @@ app.post('/userInfo', (req, res) => {
 
 app.get('/dumeSection', (req, res) => {
     res.status(200).render('dumeSection');
-})
+});
+
+app.get('/sideNav', (req, res) => {
+    res.status(200).render('sideNav');
+});
 
 WEB.prototype.noise_detect = function(data){
     try{
