@@ -3,7 +3,7 @@ module.exports = {
         [
             ["--bg-color", "#f6f6f6"],
             ["--bot-m-color", "#ddd9d9dc"],
-            ["--user-m-color", "#0c8df0ca"],
+            ["--user-m-color", "#4a2c83"],
             ["--send-color", "#90a4ae"],
             ["--scrollbarBG", "#fff"],
             ["--thumbBG", "#90a4ae"],
@@ -17,7 +17,7 @@ module.exports = {
         [
             ["--bg-color", "#0d1117"],
             ["--bot-m-color", "#ddd9d9dc"],
-            ["--user-m-color", "#0c8df0ca"],
+            ["--user-m-color", "#4a2c83ca"],
             ["--send-color", "#90a4ae"],
             ["--scrollbarBG", "#fff"],
             ["--thumbBG", "#90a4ae"],
@@ -61,7 +61,62 @@ module.exports = {
                     <h2>Error: <|error.code|>!</h2>
                     <small class="form-text text-muted">This error genaredted by system for handle unwanted useage of resource</small>
                     <p><|error.message|></p>
-                <div class="btn btn-process" style="margin-top: 40px;" onclick="system.closePyError();"><i class="fa fa-refresh"></i> Re-try</div>
+                    <div class="btn btn-process" style="margin-top: 40px;" onclick="system.closePyError();"><i class="fa fa-refresh"></i> Re-try</div>
+                </div>
             </div>
         </div>`,
+    info_templet: `
+        <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><|title|></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="new TAB().close();"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <|body|>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="new TAB().close();">Close</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `,
+    model_switch: `
+        <small class="form-text text-muted">This machine learning model are use to understand your questions and genareted desire SQL query.</small><br>
+        <h6>Public Models</h6>
+        <div class="flp">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio">O1 Model
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio">O2 Model <span title="Beta Version">Beta Version</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio">O3 Model
+                </label>
+            </div>
+        </div><br>
+        <div class="purches">Want access to premium model's with RAG? <span>Purchase additional units</span></button>
+    `,
+    chat_impexp: `
+        <small class="form-text text-muted">Import your previous chats or export your current chat data for future refrence.</small><br>
+        <h6>Import</h6>
+        <label class="label">
+            <input name="file" accept=".json" type="file" id="file-input">
+            <span>Browes the Json file</span>
+        </label>
+        <input type="text" placeholder="No file choosen" readonly="true" name="file-name" id="file-name"/>
+        <br><br>
+        <h6>Export</h6>
+        <div class="btn btn-success"><i class="fa fa-download"></i> Download chats</div>
+    `
+
 };
