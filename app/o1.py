@@ -103,7 +103,7 @@ training_args = TrainingArguments(
     learning_rate=3e-4,
     per_device_train_batch_size=16,
     per_device_eval_batch_size=16,
-    num_train_epochs=20,
+    num_train_epochs=25,
     weight_decay=0.01,
     load_best_model_at_end=True
 )
@@ -144,6 +144,11 @@ print("Generated SQL:", generated_sql)
 model.save_pretrained("./results/model")
 torch.save(model.state_dict(), "model.pth")
 
+"""I am transfer this **torch file** (model.pth) to a **tensorflow file** (o1.keras), i am doing this because my machine not able to handle torch file.
+
+And later i re-transfer it in **tensorflow js file** or **onnx file** because i am use it in a node js enviroment for use publically.
+"""
+
 import torch
 import tensorflow as tf
 from transformers import T5ForConditionalGeneration, T5Tokenizer, TFAutoModelForSeq2SeqLM
@@ -161,5 +166,83 @@ model.eval()
 tf_model = TFAutoModelForSeq2SeqLM.from_pretrained("t5-small", from_pt=True)
 
 # Save as TensorFlow Keras model
-tf_model.save("./model.keras")
+tf_model.save("./o1.keras")
 print("Model successfully saved as model.keras")
+
+#!pip install tensorflowjs
+import tensorflowjs as tfjs
+
+from transformers import T5ForConditionalGeneration, T5Tokenizer
+
+# Load the PyTorch model
+model_path = "./model.pth"  # Update with your correct path
+model = T5ForConditionalGeneration.from_pretrained("t5-small")
+
+# Load state dict from model.pth
+state_dict = torch.load(model_path, map_location=torch.device("cpu"))
+model.load_state_dict(state_dict)
+
+# Save in Hugging Face Transformers format
+save_path = "./model_hf"
+model.save_pretrained(save_path)
+tokenizer = T5Tokenizer.from_pretrained("t5-small")
+tokenizer.save_pretrained(save_path)
+
+print("✅ Model successfully converted to Hugging Face format and saved in ./model_hf")
+
+# Load model in Hugging Face format
+model = TFT5ForConditionalGeneration.from_pretrained("./model_hf")
+tokenizer = T5Tokenizer.from_pretrained("./model_hf")
+
+# Save model in TensorFlow SavedModel format
+tf_model_path = "./o1_tf"
+model.save_pretrained(tf_model_path, saved_model=True)
+
+print("✅ Model successfully converted to TensorFlow SavedModel format at ./o1_tf")
+
+import torch
+import onnx
+from transformers import T5ForConditionalGeneration
+
+# Load the T5 model (same variant as your trained model)
+model = T5ForConditionalGeneration.from_pretrained("t5-small")
+
+# Load the trained weights from the .pth file
+model.load_state_dict(torch.load("./model.pth", map_location=torch.device("cpu")))
+
+# Set model to evaluation mode
+model.eval()
+
+# Define input tensors
+dummy_input_ids = torch.randint(0, 100, (1, 128))  # Adjust input size
+dummy_decoder_input_ids = torch.randint(0, 100, (1, 1))  # Decoder input
+
+# **Wrap the model for ONNX export**
+class OnnxModel(torch.nn.Module):
+    def __init__(self, model):
+        super().__init__()
+        self.model = model
+
+    def forward(self, input_ids, decoder_input_ids):
+        # Explicitly pass decoder_input_ids to the model's forward method
+        return self.model(input_ids=input_ids, decoder_input_ids=decoder_input_ids)
+
+onnx_model = OnnxModel(model) # Create an instance of the wrapper class
+
+# Convert to ONNX format
+onnx_model_path = "./o1.onnx"
+torch.onnx.export(
+    onnx_model, # Export the wrapped model
+    (dummy_input_ids, dummy_decoder_input_ids),  # Pass both inputs
+    onnx_model_path,
+    input_names=["input_ids", "decoder_input_ids"],
+    output_names=["output"],
+    dynamic_axes={
+        "input_ids": {0: "batch_size", 1: "seq_length"},
+        "decoder_input_ids": {0: "batch_size", 1: "seq_length"},
+        "output": {0: "batch_size", 1: "seq_length"},
+    },
+    opset_version=11
+)
+
+print("✅ Model successfully converted to ONNX:", onnx_model_path)
