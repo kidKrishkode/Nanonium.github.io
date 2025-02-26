@@ -50,6 +50,13 @@ module.exports = {
             version: 80
         },
     ],
+    chat_metadata : {
+        "namespace": "Nanonium",
+        "dev": "Krishnendu Mitra",
+        "type": "Chat History Backup",
+        "content": "mime/json",
+        "exe": ".nano"
+    },
     error_templet: `
         <div class="workspace blbg" style="background: #0000009e;" id="errorPreview">
             <div class="errorView">
@@ -61,7 +68,6 @@ module.exports = {
                     <h2>Error: <|error.code|>!</h2>
                     <small class="form-text text-muted">This error genaredted by system for handle unwanted useage of resource</small>
                     <p><|error.message|></p>
-                    <div class="btn btn-process" style="margin-top: 40px;" onclick="system.closePyError();"><i class="fa fa-refresh"></i> Re-try</div>
                 </div>
             </div>
         </div>`,
@@ -78,7 +84,7 @@ module.exports = {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="new TAB().close();">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-primary" onclick="<|next|>">Save</button>
                     </div>
                 </div>
             </div>
@@ -110,8 +116,8 @@ module.exports = {
         <small class="form-text text-muted">Import your previous chats or export your current chat data for future refrence.</small><br>
         <h6>Import</h6>
         <label class="label">
-            <input name="file" accept=".json" type="file" id="file-input">
-            <span>Browes the Json file</span>
+            <input name="file" accept=".nano" type="file" id="file-input">
+            <span>Browes the Nano_json file</span>
         </label>
         <input type="text" placeholder="No file choosen" readonly="true" name="file-name" id="file-name"/>
         <br><br>
