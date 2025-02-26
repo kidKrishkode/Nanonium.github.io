@@ -104,11 +104,12 @@ TAB.prototype.closeAll = function(){
     document.body.removeChild(document.querySelector('.tabPage'));
     TAB.opened = false;
 }
-TAB.prototype.innerContext = function(title, innerContext){
+TAB.prototype.innerContext = function(title, innerContext, next){
     try{
-        document.querySelector('.tabPage').innerHTML = config.varchar.info_templet.replace("<|title|>", title);
+        let templet = config.varchar.info_templet.replace("<|title|>", title);
+        templet = templet.replace("<|next|>", next==''?'new TAB().close();':next);
+        document.querySelector('.tabPage').innerHTML = templet;
         document.querySelector('.modal-body').innerHTML = innerContext;
-
     }catch(e){
         console.error(e);
     }
@@ -134,7 +135,7 @@ System.prototype.setUp = function(){
         setTimeout(()=>{
             system.setTheme();
         },1000);
-        // system.compilerSetUp();
+        system.compilerSetUp();
     }catch(e){
         console.log("Error to set up initials!\n",e);
     }
@@ -143,9 +144,18 @@ System.prototype.navbar_toggle = function(){
     if(nav==0){
         if(document.querySelector('#v-pills-tab')==null){
             fetch('/sideNav').then(response => response.text()
-            ).then(data => 
-                document.body.innerHTML += data
-            ).catch(error => console.error('Error: ',error));
+            ).then(data => {
+                document.body.innerHTML += data;
+                const navItems = document.querySelectorAll('.nav-link');
+                navItems.forEach((item)=>{
+                    item.addEventListener('click',()=>{
+                        navItems.forEach((navItems)=>{
+                            navItems.classList.remove('active');
+                        });
+                        item.classList.add('active');
+                    });
+                });
+            }).catch(error => console.error('Error: ',error));
         }
         setTimeout(()=>{
             document.querySelector('.blbg').style.display = "block";
@@ -159,17 +169,6 @@ System.prototype.navbar_toggle = function(){
         document.querySelector('.blbg').style.display = "none";
         nav--;
     }
-}
-System.prototype.deviceVision = function(){
-    const userAgent = navigator.userAgent;
-    const isComputer = /Windows|Macintosh|Linux/i.test(userAgent) && !/Mobile/i.test(userAgent);
-    const isMobile = /Android|iPhone|iPad|iPod|Kindle|BlackBerry/i.test(userAgent);
-    const isMobileDesktop = /Android|iPhone|iPad|iPod/i.test(userAgent) && /Chrome|Safari|Firefox/i.test(userAgent) && !/Mobile/i.test(userAgent);
-    return {
-        isComputer,
-        isMobile,
-        isMobileDesktop
-    };
 }
 System.prototype.getUserLocation = function(){
     return new Promise((resolve, reject) => {
@@ -189,23 +188,47 @@ System.prototype.getUserLocation = function(){
 System.prototype.impexpTab = function(){
     let tab = new TAB();
     tab.open();
-    tab.innerContext("Import/Export chat", config.varchar.chat_impexp);
+    tab.innerContext("Import/Export chat", config.varchar.chat_impexp, 'system.importChat();');
     const input = document.getElementById("file-input");
     input.addEventListener("change", async (e) => {
         const file = e.target.files[0]; 
         document.getElementById("file-name").value = `${e.target.files[0].name} (${(e.target.files[0].size/1000).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}kb)`;
         const text = await file.text();
         try{
-          JSON.parse(text);
+            chat.history = JSON.parse(text);
         }catch(e){
-            console.info("oops");
+            chat.history = null;
+            document.getElementById("file-name").value = config.error_log[1].desc;
         }
     });
 }
 System.prototype.swtcmodl = function(){
     let tab = new TAB();
     tab.open();
-    tab.innerContext("Change model type", config.varchar.model_switch);
+    tab.innerContext("Change model type", config.varchar.model_switch, 'foo();');
+}
+System.prototype.importChat = function(){
+    if(chat.history!=null || chat.history!=undefined){
+        if(JSON.stringify(chat.history.metadata) === JSON.stringify(config.varchar.chat_metadata)){
+            new TAB().closeAll();
+            try{
+                chat.history.body.forEach((item) => {
+                    chat.addChat(item.user, 'user');
+                    chat.addChat(item.bot, 'bot');
+                });
+                chat.addChat('Imported Chat', 'import');
+            }catch(e){
+                system.handelPyError(config.error_log[4]);
+            }
+        }else{
+            system.handelPyError(config.error_log[3]);
+        }
+    }else{
+        system.handelPyError(config.error_log[2]);
+    }
+}
+System.prototype.exportChat = function(){
+    
 }
 function route(link){
     window.location = link;
@@ -272,7 +295,7 @@ System.prototype.handelPyError = function(error){
         if(!system.error_layout){
             let temp = config.varchar.error_templet;
             temp = temp.replaceAll('<|error.code|>',error.code!=undefined?error.code:422);
-            temp = temp.replaceAll('<|error.message|>',error.message!=undefined?error.message:"The server understood the content type of the request content, and the syntax of the request content was correct, but it was unable to process the contained instructions.");
+            temp = temp.replaceAll('<|error.message|>',(error?.desc!=undefined||error?.message!=undefined)?error?.desc||error?.message:"The server understood the content type of the request content, and the syntax of the request content was correct, but it was unable to process the contained instructions.");
             document.body.innerHTML += temp;
             document.body.style.overflowY = "hidden";
             document.body.scrollTop = 0;
@@ -289,7 +312,6 @@ System.prototype.handelPyError = function(error){
 }
 System.prototype.closePyError = function(){
     document.body.removeChild(document.getElementById('errorPreview'));
-    window.location.reload();
 }
 System.prototype.compilerSetUp = function(){
     try{

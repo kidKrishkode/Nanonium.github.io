@@ -182,6 +182,7 @@ body{
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+    outline: none;
 }
 .chatBox #message-section::-webkit-scrollbar-track{
     background: var(--scrollbarBG);
@@ -213,6 +214,26 @@ body{
     border: 1.5px solid red;
     background-color: #fe57786f;
     color: #fff;
+}
+.chatBox #message-section #separetor{
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    font-size: 14px;
+    color: slategray;
+    font-family: consolas, sans-serif;
+    margin: 12px 0px;
+    transition: 1s ease-in-out;
+    span{
+        width: 10%;
+    }
+    hr{
+        width: 40%;
+        margin: 0px;
+        border: 1px dashed slategray;
+    }
 }
 .chatBox #message-section .message{
     color: var(--wtxt-color);
@@ -476,14 +497,14 @@ footer, footer small{
         margin-bottom: 30px;
         display: flex;
         flex-direction: column;
-        color: grey;
+        color: slategray;
         font-weight: bold;
         .fa{
             margin-bottom: 8px;
         }
     }
     .section-col-suggest{
-        background: grey;
+        background: slategray;
         color: #fff;
         border-radius: 5px;
         padding: 5px 6px;
@@ -541,6 +562,12 @@ input[type="radio"]{
         font-size: 14px;
         line-height: 20px;
         padding: 4px 8px;
+    }
+    .chatBox #message-section #separetor{
+        font-size: 12px;
+        span, hr{
+            width: 30%;
+        }
     }
     .chatBox #input-section textarea{
         max-width: 95%;

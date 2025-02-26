@@ -22,7 +22,10 @@
     "developer": "Krishnendu Mitra",
     "error_log": [
         {"code": 0, "desc": "Invalid user input: empty field detected"},
-        {"code": 1, "desc": "Unsupported media format: please try another file type"},
-        {"code": 2, "desc": "An error occurred. There was an error generating your response query. If this issue persists please contact us through our feedback line krishnedumitra24@gmail.com"}
+        {"code": 1, "desc": "File corrupted, and cannot be opened. Please obtain a fresh copy of the programe."},
+        {"code": 2, "desc": "Process failed, server not get chat history data from nano_json file. Please make sure that nano_json file are choose correctly."},
+        {"code": 3, "desc": "Unexpted error, metadata of chat data is missing from selected nano_json file. Please make sure that nano_json file are choose correctly."},
+        {"code": 4, "desc": "Process failed, system cann't harvest chat data from selcted nano_json file. Please choose any other nano_json file."},
+        {"code": 5, "desc": "An error occurred. There was an error generating your response query. If this issue persists please contact us through our feedback line krishnedumitra24@gmail.com"}
     ]
 }

@@ -94,7 +94,7 @@
 .codeheader_Clang{
     background-color: #8D00FF;
 }
-.codeheader_Cpp{
+.codeheader_Cpp, .codeheader_sql{
     background-color: #2a1762;
 }
 .codeheader_Java{
@@ -120,10 +120,8 @@
 }
 
 .code-editor{
-    border: 1px solid grey;
-    width: 95%;
-    margin: 0 auto;
-    min-height: 300px;
+    width: 100%;
+    margin: 8px 0px;
     max-height: 400px;
     background-color: transparent;
     -webkit-border-radius: 6px 6px 6px 6px;
@@ -133,7 +131,7 @@
     font-size: 1em;
     overflow: hidden;
 }
-.code-editor:before{
+/* .code-editor:before{
     content: 'Copy';
     position: absolute;
     top: 30%;
@@ -147,10 +145,11 @@
     font-size: 14px;
     border-radius: 5px;
     cursor: pointer;
-}
+} */
 .tabs{
     list-style-type: none;
     padding: 0;
+    font-size: 87.5%;
     color: #fff;
     margin: 0;
     -webkit-border-radius: 6px 6px 0px 0px;
@@ -173,11 +172,14 @@
 	display:flex;
 	flex-direction: row;
 	justify-content: space-around;
-	width: 40%;
+	width: 30%;
 	padding: 10px 20px;
 }
 .tabi span{
     cursor: pointer;
+    i{
+        margin: 3px 2px;
+    }
 }
 .tabi .word{
     padding: 2px 5px;
@@ -191,7 +193,7 @@
 .code-wrapper{
     display: flex;
     flex-direction: row;
-    height: 400px;
+    min-height: 40px;
     max-height: 400px;
     overflow-x: auto;
     background: var(--code-color);
@@ -200,6 +202,7 @@
     transition: 1s ease-in-out;
     scrollbar-width: thin;
     scrollbar-color: transparent transparent;
+    transition: 1s ease-in-out;
 }
 .line-numbers{
     background-color: var(--code-li-color);
@@ -296,11 +299,11 @@
     }
     .code-wrapper {
         margin: 0%;
-        height: 100%;
+        /* height: 100%; */
         width: 100%;
     }
     .tabi{
-        width: 60%;
+        width: 50%;
         padding: 10px 10px;
     }
 }
