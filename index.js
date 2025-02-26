@@ -109,10 +109,11 @@ app.get('/compiler', async (req, res) => {
             compiler: {
                 updateLineNumbers: compiler.updateLineNumbers.toString(),
                 ideDeploy: compiler.ideDeploy.toString(),
-                appointCode: compiler.appointCode.toString(),
-                jsCompiler: compiler.jsCompiler.toString(),
-                pyInterpreter: compiler.pyInterpreter.toString(),
-                codefork: codefork
+                sqlCompiler: compiler.sqlCompiler.toString(),
+                green_highlighter: compiler.green_highlighter,
+                blue_highlighter: compiler.blue_highlighter,
+                purple_highlighter: compiler.purple_highlighter,
+                orange_highlighter: compiler.orange_highlighter
             }
         });
     }catch(error){
@@ -143,12 +144,6 @@ app.get('/terms', (req, res) => {
 
 app.get('/license', (req, res) => {
     res.redirect('/privacy?encode=v65w2*x');
-});
-
-app.get('/nonAPIHost', (req, res) => {
-    const error_log = web.appInfo['error_log'];
-    const error = hex.pyerrorinfo(error_log, 23);
-    res.status(200).json({error});
 });
 
 app.post('/userInfo', (req, res) => {
@@ -221,12 +216,3 @@ server.listen(PORT, (err) => {
     console.info(`\thttp://localhost:${PORT}`);
     console.log("\n\x1b[32mNode web compiled!\x1b[0m \n");
 });
-
-/*
-git status
-git add .
-git commit -m "Your commit message here"
-
-git fetch origin
-git pull
-*/
