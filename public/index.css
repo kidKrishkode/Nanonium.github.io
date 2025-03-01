@@ -221,7 +221,6 @@
 .code{
     flex-grow: 1;
     padding: 10px;
-    /*white-space: pre-wrap;*/
     font-family: monospace;
     /* overflow-x: auto; */
     overflow: visible;
@@ -230,6 +229,7 @@
     scrollbar-width: thin;
     scrollbar-color: transparent transparent;
     tab-size: 25px;
+    transition: 1s ease-in-out;
 }
 .rawport{
 	display: none;

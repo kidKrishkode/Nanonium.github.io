@@ -1,0 +1,51 @@
+{
+    "metadata": {
+        "namespace": "Nanonium",
+        "dev": "Krishnendu Mitra",
+        "type": "Chat History Backup",
+        "content": "mime/json",
+        "exe": ".nano"
+    },
+    "header": {
+        "time": 17790,
+        "ip": "127.0.0.1:443",
+        "Content": "application/json"
+    },
+    "body": [
+        {
+            "id": 0,
+            "user": "Hello Nanonium, how are you.",
+            "bot": "I am fine, and you. i hope you are all right."
+        },
+        {
+            "id": 1,
+            "user": "Can you tech me about SQL",
+            "bot": "Sure that my pleaser to teach you SQL and database. Just say me when to start.."
+        },
+        {
+            "id": 2,
+            "user": "So What is sql?",
+            "bot": "SQL is a query language based on strutured datasets, its very popular data manepulation language over the internet."
+        },
+        {
+            "id": 3,
+            "user": "Thats mean many other query languages also present which manepulate database..",
+            "bot": "Yes, so many query languages present to manepulate dataset. They are divided into two subparts<br><ul><li>strutured query language</li><li>non-strutured query language</li></ul> But in current genaration Non sql languages are use in database manegment."
+        },
+        {
+            "id": 4,
+            "user": "So what is the hello world programe in sql",
+            "bot": "Genarlly sql is not any other programming languages, its have fixed area to use, sql use to handle database so its syntax also made for data systems. But if you want the first code then ```CREATE DATABASE IF NOT EXISTS main;\nUSE main;``` it is your first code, which is create a database name 'main' and use it for future refrence."
+        },
+        {
+            "id": 5,
+            "user": "ok, i have a question in my mind, Get the students whose marks is above 80 in maths. Can you write the sql query for this.",
+            "bot": "Sure, i can the write the sql query for this. Assume that you already create the 'student' named table and inserted some recoreds on it. now inject the following sql code to get those students whose marks is greater then 80 in mathematics. ```SELECT * FROM student WHERE marks > 80 AND subject = 'maths';``` The above sql query give you table formated student details in your sql ide.<br> Point to noted that this sql query works, if your present records match the conditions of this statment."
+        },
+        {
+            "id": 6,
+            "user": "Good by.",
+            "bot": "Thank to chat with me, i hope your enjoy it."
+        }
+    ]
+}

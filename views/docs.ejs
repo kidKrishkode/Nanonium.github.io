@@ -1,0 +1,374 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Nanonium">
+    <meta property="og:image" content="../images/side-img.png" name="og:image">
+    <meta itemprop="image" content="https://kidKrishkode.github.io/Nanonium.github.io/images/side-img.png">
+    <meta property="og:site_name" content="Nanonium">
+    <meta property="twitter:image" content="https://kidKrishkode.github.io/Nanonium.github.io/images/side-img.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Nanonium">
+    <meta content="Nanonium is a SQL Bot, convert user question to desire sql query using JPEN stack and Hex framework with Recursive agile software model." lang="en-us" name="description">
+    <meta content="Nanonium, SQL Bot, sql, Question Answer, chat bot, database, project, ternsformer, Krishnendu Mitra" lang="en-us" name="keywords">
+    <title version="1.0">Nanonium document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/App.css" />
+    <link rel="stylesheet" href="../public/index.css" />
+    <link rel="icon" href="../public/favicon.ico" />
+</head>
+<style>
+    #docsPage h6{
+        margin: 50px 20px;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: sans-serif;
+        text-align: left;
+        color: slategrey;
+        span{
+            font-size: 14px;
+            background: linear-gradient(50deg, #2323ff 30%, #ec2c75 50%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border: 2px solid #ec2c75;
+            border-radius: 50px;
+            padding: 4px 8px;
+            margin: 2px 8px;
+            cursor: pointer;
+        }
+    }
+    ol{
+        list-style: none;
+        margin: 0px;
+        padding: 0%;
+        padding-bottom: 80px;
+    }
+    .btn-process{
+        color: #fff;
+        background-color: var(--user-m-color);
+        border-color: var(--user-m-color);
+    }
+    .btn-process:hover{
+        color: #fff;
+        background-color: #704ab6;
+        border-color: #704ab6;
+    }
+    #docsPage .big-gretter .gretter-code-padd .gretter-code-marg .gretter-code .code-editor:before,
+    #docsPage #docsList .drop .flx .right-web .code-editor:before,
+    #docsPage #docsList .drop .flx .left-api .code-editor:before{
+        display: none;
+    }
+    #docsPage .search-docs-head{
+        width: 95%;
+        margin: 20px auto;
+        margin-top: 50px;
+    }
+    #docsPage .search-docs-head .navbar .form-inline .input-group .input-group-prepend .input-group-text{
+        background: var(--mit-color);
+        color: var(--revers-white);
+    }
+    #docsPage .search-not-found{
+        display: none;
+        width: 30%;
+        margin: 50px auto 100px auto;
+    }
+    #docsPage .search-not-found img{
+        position: relative;
+        width: 100%;
+        transition: 1s ease-in-out;
+    }
+    #docsPage #docsList .drop{
+        margin: 20px auto;
+    }
+    #docsPage #docsList .drop .flx .left-web,
+    #docsPage #docsList .drop .flx .right-api{
+        width: 60%;
+        padding: 4px 20px;
+        font-size: 14px;
+        color: grey;
+        text-align: justify;
+    }
+    #docsPage #docsList .drop .flx .right-web,
+    #docsPage #docsList .drop .flx .left-api{
+        width: 40%;
+    }
+    #docsPage #docsList .drop .flx .left-web h2,
+    #docsPage #docsList .drop .flx .right-api h2{
+        color: var(--revers-white);
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        text-align: left;
+    }
+    #docsPage #docsList .drop .flx .left-web h2 span,
+    #docsPage #docsList .drop .flx .right-api h2 span{
+        font-weight: bold;
+        color: var(--charm);
+    }
+    #docsPage #docsList .drop .btn{
+        margin: 0px 10px 20px auto;
+    }
+    #docsPage #docsList .drop .flx .left-web ul,
+    #docsPage #docsList .drop .flx .right-api ul{
+        margin: 2px auto 10px auto;
+    }
+    #docsPage #docsList .drop .flx .left-api .code-editor{
+        width: 80%;
+        margin: 0px;
+        max-height: 280px;
+        min-height: auto;
+    }
+    #docsPage #docsList .drop .flx .left-api .code-editor .code-wrapper{
+        height: 280px;
+        max-height: 280px;
+    }
+    #docsPage #docsList .drop .flx .left-api .sample-code{
+        padding: 10px 0px;
+    }
+    #docsPage #docsList .drop .flx .left-api .sample-code .code-option{
+        cursor: pointer;
+    }
+    .code-option{
+        width: 10%;
+        background: var(--scrollbarBG);
+        color: slategrey;
+        list-style: none;
+        height: 100%;
+        padding: 0px;
+        border-radius: 5px;
+        transition: 1s ease-in-out;
+    }
+    .code-option li{
+        width: 100%;
+        height: 25%;
+        text-align: center;
+        font-size: 20px;
+        border-bottom: 1px solid slategrey;
+        padding: 20px 0px;
+    }
+    .code-option li:last-child{
+        border: none;
+    }
+    #docsPage #docsList .drop .flx .right-web .desktop-view{
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+    #docsPage #docsList .drop .flx .right-web .desktop-view iframe{
+        width: 80%;
+        height: 60%;
+        min-height: 300px;
+        margin: 10px 10%;
+        border-radius: 5px;
+        border: 1px solid grey;
+    }
+    #docsPage #docsList .drop .flx .right-web .desktop-view:before{
+        content: '';
+        width: 550px;
+        height: 300px;
+        background: transparent !important;
+        opacity: 0.4;
+        position: absolute;
+        right: 2%;
+        margin-top: 10px;
+    }
+    #docsPage #docsList .drop>.right-web~.btn,
+    #docsPage #docsList .drop:has(.left-web) .btn{
+        margin-left: 20px;
+    }
+    #docsPage #docsList .drop>.right-api~.btn,
+    #docsPage #docsList .drop:has(.left-api) .btn{
+        margin-left: 42%;
+    }
+    .code-box{
+        padding: 4px;
+        font-family: Consolas, 'Courier New', monospace;
+        background: var(--grey-white);
+        border-radius: 5px;
+        margin: 10px 0px;
+        cursor: pointer;
+    }
+    #docsPage #docsList .drop .flx small{
+        font-size: 14px;
+    }
+    @media only screen and (max-width: 900px), only screen and (min-width: 900px) and (max-width: 1200px) {
+        #docsPage h6{
+            font-size: 20px;
+            margin: 50px 10px;
+            span{
+                font-size: 10px;
+            }
+        }
+        #docsPage .search-docs-head{
+            width: 100%;
+            flex-direction: column;
+        }
+        #docsPage .search-not-found{
+            width: 70%;
+        }
+        #docsPage #docsList .drop .flx .left-api .sample-code .code-editor{
+            margin: auto;
+        }
+        #docsPage #docsList .drop .flx .left-api .sample-code .code-option{
+            width: 80%;
+            margin: 5px auto 15px;
+        }
+        #docsPage #docsList .drop .flx .left-api .sample-code .code-option li{
+            padding: 4px;
+        }
+        .code-option{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 30px;
+        }
+        .code-option li{
+            font-size: 14px;
+            padding: 0px;
+            height: 100%;
+            border-bottom: none;
+            border-right: 1px solid slategrey;
+        }
+        .reverse-column{
+            flex-direction: column-reverse !important;
+        }
+        #docsPage #docsList .drop:has(.left-web) .btn,
+        #docsPage #docsList .drop:has(.left-api) .btn{
+            margin-left: 40%;
+        }
+        #docsPage .big-gretter .gretter-code-padd .gretter-code-marg .gretter-code,
+        #docsPage #docsList .drop .flx,
+        #docsPage #docsList .drop .flx .left-api .sample-code{
+            flex-direction: column;
+        }
+        #docsPage .big-gretter .gretter-code-padd .gretter-code-marg .gretter-code .code-editor,
+        #docsPage .search-docs-head .flx,
+        #docsPage #docsList .drop .flx .left-web,
+        #docsPage #docsList .drop .flx .right-api,
+        #docsPage #docsList .drop .flx .right-web,
+        #docsPage #docsList .drop .flx .left-api{
+            width: 100%;
+        }
+    }
+</style>
+
+<body>
+    <header id="header" class="bg-dark">
+        <span>
+            <img src="../public/favicon.ico" id="logo" alt="LazyBot" />
+            <h1>Nanonium</h1>
+        </span>
+        <span class="memory-info"
+            title="no specific memory is allotted for your work, because this system developed free of cost. Thats why your data deleted permanently after close the browser. But it is very securely work">No
+            Memory <i class="fa fa-info-circle"></i></span>
+        <span>
+            <img src="../images/avater.png" id="userDp" alt="User Dp" onclick="chat.showDp();" />
+            <i class="fa fa-ellipsis-v" alt="Menu" onclick="system.navbar_toggle();"></i>
+        </span>
+    </header>
+    <section class="workspace" id="docsPage">
+        <h6>Nanonium Document <span>Version 1.0.0</span></h6>
+        <div class="search-docs-head">
+            <nav class="navbar navbar-light">
+                <form class="form-inline" style="width: 350px;">
+                    <div class="input-group" style="width: 100%;">
+                        <div class="input-group-prepend">
+                            <span class="btn input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+                        </div>
+                        <input type="search" class="form-control" id="searchData-docs" placeholder="Search Here"
+                            aria-label="Search" aria-describedby="basic-addon"
+                            onkeyup="search_product('searchData-docs','drop');">
+                    </div>
+                </form>
+            </nav>
+        </div>
+        <ol class="search-product-data" id="docsList">
+            <li class="drop">
+                <h2>Meet <span>Nanonium</span>, Your Smart SQL Query Generator!</h2>
+                <h5>What is Nanonium?</h5>
+                <p>Nanonium is a smart SQL chatbot that can produce SQL queries from user input. In simple
+                    words, it converts natural language questions to SQL queries, so database interaction
+                    becomes simple for people who do not know SQL syntax. Developed with the JPEN stack
+                    (JSON-Python-Embedded-Node), it is an open-source project hosted on GitHub for contribution.
+                    Nevertheless, the initial creator and owner of Nanonium is Krishnendu Mitra.</p>
+                <h5>Why Do We Need Nanonium?</h5>
+                <p>Nanonium is specially useful for:</p>
+                <ul class="nostyle">
+                    <li class="tic">New SQL learners, to learn the structure of queries.</li>
+                    <li class="tic">Business users who require SQL queries but have no SQL skill.</li>
+                    <li class="tic">Data-driven apps where people pose questions and the system outputs SQL queries to retrieve real-time answers.</li>
+                </ul>
+                <h5>Part of a Bigger Vision</h5>
+                <p>Although Nanonium is an independent project, it forms a central part in a bigger system. The general project consists of a two-step process:</p>
+                <ul class="nostyle">
+                    <li class="tic">Nanonium translates questions from users to SQL queries.</li>
+                    <li class="tic">Another module runs these queries and displays results.</li>
+                </ul>
+                <p>For instance, if a company owner queries, "How much profit did I make today?", Nanonium will
+                    produce the required SQL query. The second half of the project will retrieve real-time data
+                    from the database and display it in graphical or tabular format.<br><br>
+                    Although Nanonium by itself is not an entirely independent system, it is a basis for future
+                    implementations, and generating SQL queries becomes easy and efficient!
+                </p>
+                <div class="btn btn-process">Try Now!</div>
+            </li>
+            <li class="drop">
+                <h2>Accessing Nanonium: <i class="fa fa-star prp small"></i><br> Your Gateway to <span>AI-Powered</span>
+                    SQL Queries!</h2>
+                <h5>How to Open Nanonium?</h5>
+                <p>Nanonium is hosted on Vercel, so it is easily accessible from any device. Just:</p>
+                <ul class="nostyle">
+                    <li class="toi">Search for "Nanonium Chatbot" on Google, or</li>
+                    <li class="toi">Directly visit: <a href="https://nanonium.vercel.app/">nanonium.vercel.app</a>.</li>
+                </ul>
+                <p>This will launch the Nanonium web application, where you can begin creating SQL queries right away.
+                </p>
+                <h5>For Developers: Running Nanonium Locally</h5>
+                <p>If you are a developer who wants to contribute or personalize Nanonium, do the following:</p>
+                <ul class="nostyle">
+                    <li class="toi">Go to our GitHub repository and join as a collaborator or download project code.
+                    </li>
+                    <li class="toi">Unzip the downloaded repository and open a terminal inside the project directory.
+                    </li>
+                    <li class="toi">Use the following command to launch Nanonium in a local environment: <span
+                            class="text-muted code-box">node index.js</span></li>
+                </ul>
+                <p>This will launch the project on localhost:443</p>
+                <p>Prerequisites for Running Nanonium Locally </p>
+                <ul class="nostyle">
+                    <li class="toi">Ensure Node.js is installed on your system. If not, download and install it first.
+                    </li>
+                    <li class="toi">Install the required basic Node.js packages, such as: <span
+                            class="text-muted code-box">npm install express json</span></li>
+                    <li class="toi">If you require further dependencies, Nanonium will automatically prompt you to
+                        install them when you execute <span class="code-box">node index.js</span></li>
+                </ul>
+                <p>You're now ready to go and experiment and build upon Nanonium's functionality!</p>
+                <div class="btn btn-process">Try Now!</div>
+            </li>
+            <li class="drop"></li>
+        </ol>
+        <div class="search-not-found" id="searchData-docsDOD">
+            <img src="../images/404.svg" alt="chs" />
+        </div>
+    </section>
+    <footer class="text-muted footer">
+        <span class="flx"><img src="../public/favicon.ico" alt="chs" />
+            <o>© <%= (new Date().getFullYear()) %> Nanonium</o>
+        </span>
+        <span onclick="system.openTerms();">Terms</span>
+        <span onclick="system.openPrivacy();">Privacy</span>
+        <span onclick="system.openLicense();">Security</span>
+        <span onclick="route('/docs')">Docs</span>
+        <span><a
+                href="mailto:krishnendumitra24@gmail.com?&subject=Nanonium Query&body=My name is: <|Write your name|>,\nMy query is: <|Write your query|>.">Contact</a></span>
+        <span onclick="route('/docs')">Social Media</span>
+    </footer>
+</body>
+<script src="../public/App.js"></script>
+<script>
+    setTimeout(() =>{
+        new Loader().remove();
+    }, 1000);
+</script>
+</html>

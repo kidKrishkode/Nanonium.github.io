@@ -2,7 +2,8 @@ module.exports = {
     themeSet: [
         [
             ["--bg-color", "#f6f6f6"],
-            ["--bot-m-color", "#ddd9d9dc"],
+            ["--grey-white", "#ddd9d9dc"],
+            ["--bot-m-color", "#d6d9dd"],
             ["--user-m-color", "#4a2c83"],
             ["--send-color", "#90a4ae"],
             ["--scrollbarBG", "#fff"],
@@ -16,7 +17,8 @@ module.exports = {
         ],
         [
             ["--bg-color", "#0d1117"],
-            ["--bot-m-color", "#ddd9d9dc"],
+            ["--grey-white", "#ddd9d9dc"],
+            ["--bot-m-color", "#20272b"],
             ["--user-m-color", "#4a2c83ca"],
             ["--send-color", "#90a4ae"],
             ["--scrollbarBG", "#fff"],
@@ -122,7 +124,7 @@ module.exports = {
         <input type="text" placeholder="No file choosen" readonly="true" name="file-name" id="file-name"/>
         <br><br>
         <h6>Export</h6>
-        <div class="btn btn-success"><i class="fa fa-download"></i> Download chats</div>
+        <div class="btn btn-success" onclick="system.exportChat();"><i class="fa fa-download"></i> Download chats</div>
     `
 
 };

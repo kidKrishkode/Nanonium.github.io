@@ -212,9 +212,12 @@ System.prototype.importChat = function(){
         if(JSON.stringify(chat.history.metadata) === JSON.stringify(config.varchar.chat_metadata)){
             new TAB().closeAll();
             try{
+                let key = chat.history.header.ip[1]*1%2==0?chat.history.header.ip[1]*1+1:chat.history.header.ip[1]*1;
+                let decoder = eval(config.security.decodedData);
                 chat.history.body.forEach((item) => {
-                    chat.addChat(item.user, 'user');
-                    chat.addChat(item.bot, 'bot');
+                    // chat.addChat(item.user, 'user');
+                    // chat.addChat(item.bot, 'bot');
+                    chat.addChat(Array(key).fill().reduce((acc)=>decoder(acc), item.message), item.type);
                 });
                 chat.addChat('Imported Chat', 'import');
             }catch(e){
@@ -228,8 +231,27 @@ System.prototype.importChat = function(){
     }
 }
 System.prototype.exportChat = function(){
-    
+    let Exp_Chat = {
+        "metadata": config.varchar.chat_metadata,
+        "header": {
+            "time": ((new Date()).getTime()),
+            "ip": config.ip,
+            "Content": "application/json"
+        },
+        "body": []
+    };
+    let index = 0;
+    let messages = document.querySelectorAll('.message');
+    messages.forEach((message) => {
+        if(message.id!='separetor'){
+            hashed_message = chat.encoder(message.innerHTML, message.id, config.ip[1]*1%2==0?config.ip[1]*1+1:config.ip[1]*1);
+            Exp_Chat.body.push({"id": index, "message": hashed_message, "type": message.id});
+            index++;
+        }
+    });
+    this.downloadChat(JSON.stringify(Exp_Chat), `nium_${(new Date()).getTime()}.nano`);
 }
+
 function route(link){
     window.location = link;
 }
@@ -247,11 +269,19 @@ System.prototype.copyCode = function(id){
     document.body.removeChild(tempTextarea);
     alert("Code has been copied to the clipboard!");
 }
-System.prototype.downloadCode = function(id,name){
+System.prototype.downloadCode = function(id, name){
     const textToDownload = document.getElementById(id).textContent;
-    // const fileName = "downloaded_file.txt";
     const fileName = `${name}`;
     const blob = new Blob([textToDownload], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    link.click();
+}
+System.prototype.downloadChat = function(chat, name){
+    const chatToDownload = chat;
+    const fileName = `${name}`;
+    const blob = new Blob([chatToDownload], { type: "text/plain" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = fileName;

@@ -1,7 +1,8 @@
 @media (prefers-color-scheme: light) {
     :root{
         --bg-color: #f6f6f6;
-        --bot-m-color: #ddd9d9dc;
+        --grey-white: #ddd9d9dc;
+        --bot-m-color: #d6d9dd;
         --user-m-color: #4a2c83;
         --send-color: #90a4ae;
         --scrollbarBG: #fff;
@@ -17,7 +18,8 @@
 @media (prefers-color-scheme: dark) {
     :root{
         --bg-color: #0d1117;
-        --bot-m-color: #ddd9d9dc;
+        --grey-white: #ddd9d9dc;
+        --bot-m-color: #20272b;
         --user-m-color: #4a2c83ca;
         --send-color: #90a4ae;
         --scrollbarBG: #fff;
@@ -78,7 +80,7 @@ body{
 .errorView{
     width: 70%;
     border-radius: 10px;
-    background: var(--bot-m-color);
+    background: var(--grey-white);
     height: 500px;
     margin: 8% auto 0px auto;
 }
@@ -199,6 +201,7 @@ body{
     max-width: 50%;
     font-size: 16px;
     background-color: var(--bot-m-color);
+    color: var(--revers-white);
     border-radius: 0px 1.5vw 1.5vw 1.8vw;
     padding: 1vw;
     margin: 1.5vw 0;
@@ -238,7 +241,7 @@ body{
 .chatBox #message-section .message{
     color: var(--wtxt-color);
     clear: both;
-    line-height: 1.2vw;
+    line-height: 1.5vw;
     font-size: 1.2vw;
     padding: 8px;
     position: relative;

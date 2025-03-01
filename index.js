@@ -99,7 +99,10 @@ app.get('/index', (req, res) => {
 
 app.get('/varchar', async (req, res) => {
     const navi = req.headers;
-    res.status(200).json({varchar, navi, error_log: web.appInfo['error_log']});
+    res.status(200).json({varchar, navi, error_log: web.appInfo['error_log'], security: {
+        encodedData: security.encodedData.toString(),
+        decodedData: security.decodedData.toString()
+    }, ip: req.userIp});
 });
 
 app.get('/compiler', async (req, res) => {
@@ -113,7 +116,8 @@ app.get('/compiler', async (req, res) => {
                 green_highlighter: compiler.green_highlighter,
                 blue_highlighter: compiler.blue_highlighter,
                 purple_highlighter: compiler.purple_highlighter,
-                orange_highlighter: compiler.orange_highlighter
+                orange_highlighter: compiler.orange_highlighter,
+                string_highlighter: compiler.string_highlighter
             }
         });
     }catch(error){
@@ -161,6 +165,10 @@ app.get('/dumeSection', (req, res) => {
 
 app.get('/sideNav', (req, res) => {
     res.status(200).render('sideNav');
+});
+
+app.get('/docs', (req, res) => {
+    res.status(200).render('docs');
 });
 
 WEB.prototype.noise_detect = function(data){

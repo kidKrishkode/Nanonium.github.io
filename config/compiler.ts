@@ -51,9 +51,10 @@ module.exports = {
         "=",
         "+",
         " - ",
+        "/",
         "*",
-        "&lt",
-        "&gt",
+        "&lt;",
+        "&gt;",
         "(",
         ")",
         "&",
@@ -425,20 +426,34 @@ module.exports = {
         "YEAR",
         "ZONE"
     ],
+    string_highlighter: [
+        `'`,
+        `"`,
+        '`'
+    ],
     sqlCompiler: (filedName)=>{
         let parser = document.querySelector(filedName).innerHTML;
         let tokens = {
-            "green_highlighter": ".grn",
-            "blue_highlighter": ".blu",
-            "purple_highlighter": ".prp",
-            "orange_highlighter": ".org",
+            "green_highlighter": "grn",
+            "blue_highlighter": "blu",
+            "purple_highlighter": "prp",
+            "orange_highlighter": "org",
         };
         parser = parser.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
         for (let [key, value] of Object.entries(tokens)) {
             let j = eval(`compiler.${key}`);
             for (let i = 0; i < j.length; i++) {
-                parser = parser.replaceAll(new RegExp(`\\b${j[i]}\\b`, 'g'), ` <span class="${value}">${j[i]}</span> `);
+                parser = parser.replaceAll(` ${j[i]} `, ` <span class="${value}">${j[i]}</span> `);
+                if(parser.startsWith(j[i])){
+                    parser = parser.replaceAll(`${j[i]}`, `<span class="${value}">${j[i]}</span>`);
+                }
+                parser = parser.replaceAll(`\n${j[i]} `, `\n<span class="${value}">${j[i]}</span> `);
             }
+        }
+        parser = parser.replaceAll(/\d+/g, match => `<span class="sky">${match}</span>`);
+        let k = eval(`compiler.string_highlighter`);
+        for (let i=0; i<k.length; i++) {
+            parser = parser.replaceAll(` ${k[i]}`, ` <span class="gld">${k[i]}`).replaceAll(`${k[i]} `, `${k[i]}</span> `).replaceAll(`${k[i]};`, `${k[i]}</span>;`);
         }
         document.querySelector(filedName).innerHTML = parser;
     }
