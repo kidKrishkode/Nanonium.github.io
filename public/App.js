@@ -45,6 +45,7 @@ class Security{
     }
 }
 document.addEventListener("DOMContentLoaded",() => {
+    document.body.scrollTop = 0;
     loader = new Loader(true);
     loader.creat();
     // loader.remove(3000);
@@ -86,6 +87,8 @@ Loader.prototype.remove = function(time){
     setTimeout(()=>{
         document.body.removeChild(document.querySelector('.loading'));
         loader.loaded = false;
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
         document.body.style.overflowY = "scroll";
     },time);
 }
